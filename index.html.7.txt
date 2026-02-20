@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Frequência - 7º Ano</title>
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#4e73df,#1cc88a);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  margin:0;
+}
+.container{
+  background:white;
+  padding:30px;
+  border-radius:15px;
+  width:350px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  text-align:center;
+}
+h2{
+  margin-bottom:20px;
+}
+select, button{
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-size:14px;
+}
+button{
+  background:#4e73df;
+  color:white;
+  border:none;
+  cursor:pointer;
+}
+button:hover{
+  background:#2e59d9;
+}
+.sucesso{
+  color:green;
+  margin-top:10px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h2>Frequência - 7º Ano</h2>
+
+<select id="nome">
+<option>Caio Farias de Carvalho</option>
+<option>Arthur Felipe Soares do Nascimento</option>
+<option>Israel Vieira de Melo</option>
+<option>João Gabriel Gonçalves Simões</option>
+<option>Kelvin da Gama Queiroz</option>
+<option>João Alberto Mendonça da Silva</option>
+<option>Samuel Barbosa de Souza</option>
+<option>Maitê Queiroz Sampaio</option>
+<option>Pietro Alexandre Viégas da Silva</option>
+<option>Clarice dos Santos Oliveira</option>
+<option>Roger Ofir Oliveira Pereira</option>
+<option>Luisa Eduarda da Silva Carmo</option>
+<option>João Pedro Pimenta Gomes</option>
+<option>Arthur Cadmiel da Silva Oliveira</option>
+<option>Maria Sofia Santos Carvalho</option>
+<option>Ana Luiza</option>
+</select>
+
+<button onclick="registrar('Entrada')">Registrar Entrada</button>
+<button onclick="registrar('Saída')">Registrar Saída</button>
+
+<div id="msg" class="sucesso"></div>
+
+</div>
+
+<script>
+const url = "https://script.google.com/macros/s/AKfycbxxg_x7pswIRfAHnHrwK9D7oc5208Fz6VBqLgAsPVfnuTkYFUtDt5QoFQjbzrVgMooD5A/exec";
+
+function registrar(tipo){
+  const nome = document.getElementById("nome").value;
+
+  fetch(url,{
+    method:"POST",
+    body:new URLSearchParams({
+      nome:nome,
+      tipo:tipo
+    })
+  })
+  .then(res=>res.text())
+  .then(texto=>{
+    document.getElementById("msg").innerText = texto;
+  })
+  .catch(()=>{
+    document.getElementById("msg").innerText="Erro ao registrar";
+  });
+}
+</script>
+
+</body>
+</html>
