@@ -2,7 +2,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Frequência - 7º Ano</title>
+
 <style>
 body{
   font-family: Arial, sans-serif;
@@ -13,6 +15,7 @@ body{
   height:100vh;
   margin:0;
 }
+
 .container{
   background:white;
   padding:30px;
@@ -21,32 +24,40 @@ body{
   box-shadow:0 10px 30px rgba(0,0,0,0.2);
   text-align:center;
 }
+
 h2{
   margin-bottom:20px;
+  color:#333;
 }
+
 select, button{
   width:100%;
-  padding:10px;
+  padding:12px;
   margin:10px 0;
   border-radius:8px;
   border:1px solid #ccc;
   font-size:14px;
 }
+
 button{
   background:#4e73df;
   color:white;
   border:none;
   cursor:pointer;
+  font-weight:bold;
 }
+
 button:hover{
   background:#2e59d9;
 }
+
 .sucesso{
-  color:green;
-  margin-top:10px;
+  margin-top:15px;
+  font-weight:bold;
 }
 </style>
 </head>
+
 <body>
 
 <div class="container">
@@ -79,26 +90,36 @@ button:hover{
 </div>
 
 <script>
-const url = "https://script.google.com/macros/s/AKfycbw18qBsO_MB-V15_szleAIPa2pmpZ9VvPmjPoI-5-4BVpUcoQQigGc_NRumLCFPdbGG/exec";
+
+const url = "https://script.google.com/macros/s/AKfycbyir30RDsik8LFmoZM7zo5t7YHKR8rqNIXECqlHyAUCietHc_ZL5IyyYU_w2ZPU8VVWSg/exec";
 
 function registrar(tipo){
-  const nome = document.getElementById("nome").value;
 
-  fetch(url,{
-    method:"POST",
-    body:new URLSearchParams({
-      nome:nome,
-      tipo:tipo
-    })
+  const nome = document.getElementById("nome").value;
+  const msg = document.getElementById("msg");
+
+  msg.style.color = "black";
+  msg.innerText = "Registrando...";
+
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: "nome=" + encodeURIComponent(nome) + 
+          "&tipo=" + encodeURIComponent(tipo)
   })
-  .then(res=>res.text())
-  .then(texto=>{
-    document.getElementById("msg").innerText = texto;
+  .then(response => response.text())
+  .then(texto => {
+      msg.style.color = "green";
+      msg.innerText = texto;
   })
-  .catch(()=>{
-    document.getElementById("msg").innerText="Erro ao registrar";
+  .catch(error => {
+      msg.style.color = "red";
+      msg.innerText = "Erro ao registrar.";
   });
 }
+
 </script>
 
 </body>
