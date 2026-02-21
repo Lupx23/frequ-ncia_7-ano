@@ -101,23 +101,21 @@ function registrar(tipo){
   msg.style.color = "black";
   msg.innerText = "Registrando...";
 
-  fetch(url, {
-    method: "POST",
-    mode: "no-cors",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded"
-    },
-    body: "nome=" + encodeURIComponent(nome) +
-          "&tipo=" + encodeURIComponent(tipo)
-  })
-  .then(() => {
-      msg.style.color = "green";
-      msg.innerText = "Registro enviado!";
-  })
-  .catch(() => {
-      msg.style.color = "red";
-      msg.innerText = "Erro ao registrar.";
-  });
+  const linkFinal = url + 
+    "?nome=" + encodeURIComponent(nome) +
+    "&tipo=" + encodeURIComponent(tipo);
+
+  fetch(linkFinal)
+    .then(() => {
+        msg.style.color = "green";
+        msg.innerText = "Registro feito com sucesso!";
+    })
+    .catch(() => {
+        msg.style.color = "red";
+        msg.innerText = "Erro ao registrar.";
+    });
 }
+
+</script>
 
 </script>
