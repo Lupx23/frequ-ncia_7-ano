@@ -91,12 +91,18 @@ button:hover{
 
 <script>
 
-const url = "https://script.google.com/macros/s/AKfycbxeki5qdCLANJFZ-rwUthZ1NqkhOaMletOGbDGxf8OFpFUcDacQIbukKDr2pY6Irdf5/exec";
+const url = "https://script.google.com/macros/s/AKfycbzzpwRHPaCesVHF7iua7QAsTsUl66IFgkB9EZZYbUC44_W70arjkCepkBgTfNte4m-G/exec";
 
 function registrar(tipo){
 
   const nome = document.getElementById("nome").value;
   const msg = document.getElementById("msg");
+
+  if(!nome){
+    msg.style.color = "red";
+    msg.innerText = "Digite o nome.";
+    return;
+  }
 
   msg.style.color = "black";
   msg.innerText = "Registrando...";
@@ -105,7 +111,6 @@ function registrar(tipo){
     "?nome=" + encodeURIComponent(nome) +
     "&tipo=" + encodeURIComponent(tipo);
 
-  // Cria iframe invisível
   const iframe = document.createElement("iframe");
   iframe.style.display = "none";
   iframe.src = linkFinal;
