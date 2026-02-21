@@ -101,15 +101,21 @@ function registrar(tipo){
   msg.style.color = "black";
   msg.innerText = "Registrando...";
 
-  const linkFinal = url +
+  const linkFinal = url + 
     "?nome=" + encodeURIComponent(nome) +
     "&tipo=" + encodeURIComponent(tipo);
 
-  const img = new Image();
-  img.src = linkFinal;
+  // Cria iframe invisível
+  const iframe = document.createElement("iframe");
+  iframe.style.display = "none";
+  iframe.src = linkFinal;
+  document.body.appendChild(iframe);
 
-  msg.style.color = "green";
-  msg.innerText = "Registro enviado com sucesso!";
+  setTimeout(() => {
+    msg.style.color = "green";
+    msg.innerText = "Registro feito com sucesso!";
+    document.body.removeChild(iframe);
+  }, 1500);
 }
 
 </script>
