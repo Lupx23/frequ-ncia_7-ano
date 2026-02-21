@@ -101,21 +101,15 @@ function registrar(tipo){
   msg.style.color = "black";
   msg.innerText = "Registrando...";
 
-  const linkFinal = url + 
+  const linkFinal = url +
     "?nome=" + encodeURIComponent(nome) +
     "&tipo=" + encodeURIComponent(tipo);
 
-  fetch(linkFinal)
-    .then(() => {
-        msg.style.color = "green";
-        msg.innerText = "Registro feito com sucesso!";
-    })
-    .catch(() => {
-        msg.style.color = "red";
-        msg.innerText = "Erro ao registrar.";
-    });
-}
+  const img = new Image();
+  img.src = linkFinal;
 
-</script>
+  msg.style.color = "green";
+  msg.innerText = "Registro enviado com sucesso!";
+}
 
 </script>
