@@ -84,14 +84,13 @@ button:hover{
 
 <button onclick="registrar('Entrada')">Registrar Entrada</button>
 <button onclick="registrar('Saída')">Registrar Saída</button>
-
 <div id="msg" class="sucesso"></div>
 
 </div>
 
 <script>
 
-const url = "https://script.google.com/macros/s/AKfycbzzpwRHPaCesVHF7iua7QAsTsUl66IFgkB9EZZYbUC44_W70arjkCepkBgTfNte4m-G/exec";
+const url = "https://script.google.com/macros/s/AKfycby4J3SEuhco1AHJxy0NYwrzTBckchO7C1A3gfyGLjmcJn7sTrWKdNBawvJ50B3GR9Vz/exec";
 
 function registrar(tipo){
 
@@ -124,3 +123,4 @@ function registrar(tipo){
 }
 
 </script>
+
